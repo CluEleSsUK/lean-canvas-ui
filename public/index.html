@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Lean Canvas</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>Lean Canvas</h1>
+                <button id="download-btn" class="download-btn">Download as Image</button>
+            </header>
+
+            <div id="lean-canvas" class="lean-canvas">
+                <!-- Row 1: Main sections -->
+                <div class="canvas-row main-row">
+                    <!-- Problem -->
+                    <div class="canvas-cell problem">
+                        <div class="cell-header">
+                            <span class="cell-number">2</span>
+                            <span class="cell-title">PROBLEM</span>
+                        </div>
+                        <textarea placeholder="Top 3 problems your customers face..."></textarea>
+                        <div class="subsection">
+                            <span class="subsection-title">Existing Alternatives</span>
+                            <textarea placeholder="How are these problems solved today?"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Solution + Key Metrics -->
+                    <div class="canvas-cell-group">
+                        <div class="canvas-cell solution">
+                            <div class="cell-header">
+                                <span class="cell-number">4</span>
+                                <span class="cell-title">SOLUTION</span>
+                            </div>
+                            <textarea placeholder="Top 3 features that solve the problems..."></textarea>
+                        </div>
+                        <div class="canvas-cell metrics">
+                            <div class="cell-header">
+                                <span class="cell-number">8</span>
+                                <span class="cell-title">KEY METRICS</span>
+                            </div>
+                            <textarea placeholder="Key activities you measure..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Unique Value Proposition -->
+                    <div class="canvas-cell uvp">
+                        <div class="cell-header">
+                            <span class="cell-number">3</span>
+                            <span class="cell-title">UNIQUE VALUE PROPOSITION</span>
+                        </div>
+                        <textarea
+                            placeholder="Single, clear, compelling message that states why you are different and worth buying..."
+                        ></textarea>
+                        <div class="subsection">
+                            <span class="subsection-title">High-Level Concept</span>
+                            <textarea placeholder="X for Y analogy (e.g., YouTube = Flickr for videos)"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Unfair Advantage + Channels -->
+                    <div class="canvas-cell-group">
+                        <div class="canvas-cell advantage">
+                            <div class="cell-header">
+                                <span class="cell-number">9</span>
+                                <span class="cell-title">UNFAIR ADVANTAGE</span>
+                            </div>
+                            <textarea placeholder="Something that cannot be easily copied or bought..."></textarea>
+                        </div>
+                        <div class="canvas-cell channels">
+                            <div class="cell-header">
+                                <span class="cell-number">5</span>
+                                <span class="cell-title">CHANNELS</span>
+                            </div>
+                            <textarea placeholder="Path to customers (e.g., social media, email, SEO)..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Customer Segments -->
+                    <div class="canvas-cell customers">
+                        <div class="cell-header">
+                            <span class="cell-number">1</span>
+                            <span class="cell-title">CUSTOMER SEGMENTS</span>
+                        </div>
+                        <textarea placeholder="Target customers and users..."></textarea>
+                        <div class="subsection">
+                            <span class="subsection-title">Early Adopters</span>
+                            <textarea placeholder="Characteristics of your ideal first customers..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 2: Cost Structure and Revenue Streams -->
+                <div class="canvas-row bottom-row">
+                    <div class="canvas-cell cost">
+                        <div class="cell-header">
+                            <span class="cell-number">7</span>
+                            <span class="cell-title">COST STRUCTURE</span>
+                        </div>
+                        <textarea
+                            placeholder="Customer acquisition costs, distribution costs, hosting, people, etc..."
+                        ></textarea>
+                    </div>
+                    <div class="canvas-cell revenue">
+                        <div class="cell-header">
+                            <span class="cell-number">6</span>
+                            <span class="cell-title">REVENUE STREAMS</span>
+                        </div>
+                        <textarea placeholder="Revenue model, lifetime value, revenue, gross margin..."></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="bundle.js"></script>
+    </body>
+</html>

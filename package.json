@@ -1,0 +1,22 @@
+{
+    "name": "lean-canvas-ui",
+    "version": "1.0.0",
+    "description": "Interactive Lean Canvas webapp for founders",
+    "scripts": {
+        "clean": "rm -rf dist",
+        "copy": "mkdir -p dist && cp -r public/* dist/",
+        "build": "npm run clean && npm run copy && esbuild src/index.ts --bundle --outfile=dist/bundle.js",
+        "start": "npm run clean && npm run copy && esbuild src/index.ts --bundle --outfile=dist/bundle.js --servedir=dist --serve=8080",
+        "format:fix": "prettier . --write",
+        "format:check": "prettier . --check",
+        "typecheck": "tsc --noEmit"
+    },
+    "devDependencies": {
+        "esbuild": "^0.20.0",
+        "typescript": "^5.3.0",
+        "prettier": "^3.7.4"
+    },
+    "dependencies": {
+        "html2canvas": "^1.4.1"
+    }
+}
