@@ -1,45 +1,45 @@
 name: CI
 
 on:
-    pull_request:
-        branches: [main, master]
+  pull_request:
+    branches: [master]
 
 jobs:
-    build:
-        name: Build
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v4
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v4
-              with:
-                  node-version: "23"
-                  cache: "npm"
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "23"
+          cache: "npm"
 
-            - name: Install dependencies
-              run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-            - name: Type check
-              run: npm run typecheck
+      - name: Type check
+        run: npm run typecheck
 
-            - name: Build
-              run: npm run build
+      - name: Build
+        run: npm run build
 
-    format:
-        name: Format
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v4
+  format:
+    name: Format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v4
-              with:
-                  node-version: "20"
-                  cache: "npm"
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
 
-            - name: Install dependencies
-              run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-            - name: Check formatting
-              run: npm run format:check
+      - name: Check formatting
+        run: npm run format:check
