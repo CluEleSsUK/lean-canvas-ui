@@ -1,13 +1,77 @@
 import html2canvas from "html2canvas"
 
+function encodeCanvasData(textareas: NodeListOf<HTMLTextAreaElement>): string {
+    const data = Array.from(textareas).map((textarea) => textarea.value)
+    const json = JSON.stringify(data)
+    return btoa(encodeURIComponent(json))
+}
+
+function decodeCanvasData(encoded: string): string[] | null {
+    try {
+        const json = decodeURIComponent(atob(encoded))
+        const data = JSON.parse(json)
+        if (Array.isArray(data) && data.every((item) => typeof item === "string")) {
+            return data
+        }
+        return null
+    } catch {
+        return null
+    }
+}
+
+function loadFromUrl(textareas: NodeListOf<HTMLTextAreaElement>): void {
+    const hash = window.location.hash
+    if (!hash.startsWith("#data=")) {
+        return
+    }
+
+    const encoded = hash.slice(6)
+    const data = decodeCanvasData(encoded)
+    if (!data) {
+        console.error("Failed to decode canvas data from URL")
+        return
+    }
+
+    textareas.forEach((textarea, index) => {
+        if (index < data.length) {
+            textarea.value = data[index]
+        }
+    })
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     const downloadBtn = document.getElementById("download-btn") as HTMLButtonElement | null
+    const shareBtn = document.getElementById("share-btn") as HTMLButtonElement | null
     const leanCanvas = document.getElementById("lean-canvas")
 
-    if (!downloadBtn || !leanCanvas) {
+    if (!downloadBtn || !shareBtn || !leanCanvas) {
         console.error("Required elements not found")
         return
     }
+
+    const textareas = leanCanvas.querySelectorAll("textarea")
+
+    // Load data from URL on page load
+    loadFromUrl(textareas)
+
+    // Share button handler
+    shareBtn.addEventListener("click", async () => {
+        const encoded = encodeCanvasData(textareas)
+        const url = `${window.location.origin}${window.location.pathname}#data=${encoded}`
+
+        try {
+            await navigator.clipboard.writeText(url)
+            const originalText = shareBtn.textContent
+            shareBtn.textContent = "Copied!"
+            setTimeout(() => {
+                shareBtn.textContent = originalText
+            }, 2000)
+        } catch {
+            // Fallback: update URL and prompt user
+            window.location.hash = `data=${encoded}`
+            alert("URL updated. Copy it from your browser address bar to share.")
+        }
+    })
 
     downloadBtn.addEventListener("click", async () => {
         try {
